@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  background: radial-gradient(teal, black) !important;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  width:75%;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.navbar-brand a, .nav-item a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-brand a:hover, .nav-item a:hover {
+  color: green;
+}
+
+/* Footer Styling */
+.Footer {
+  position: sticky;
+  top: 100%;
+}
+
