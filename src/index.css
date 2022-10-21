@@ -10,16 +10,36 @@ body {
 #root {
   background: radial-gradient(teal, black) !important;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   flex-grow: 1;
 }
+
+a {
+  text-decoration: none !important;
+}
+
 
 .App {
   display: flex;
   flex-direction: column;
-  width:75%;
+  align-items: center;
+  justify-content: flex-start;
+  width:70%;
   height: 100vh;
   margin: 0 auto;
+}
+
+.Header {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* Content styling */
+.Home, .NewPost, .PostPage, .About, .Missing, .EditPost {
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .navbar-brand a, .nav-item a {
@@ -29,6 +49,16 @@ body {
 
 .navbar-brand a:hover, .nav-item a:hover {
   color: green;
+}
+
+/* Post Card styling */
+
+.PostPage h2, h6, .Post a {
+  color: teal;
+}
+
+.Post a:hover {
+  color: black !important;
 }
 
 /* Footer Styling */

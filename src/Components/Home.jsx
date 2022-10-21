@@ -1,7 +1,13 @@
-const Home = () => {
+import Feed from "./Feed";
+
+const Home = ({ posts }) => {
     return (
-    <main className="Home container">
-        
+    <main className="Home">
+        {posts.length ? (
+          <Feed posts={posts} />
+        ) : (
+          <p style={{marginTop: '2rem'}}>No posts are available</p>
+        )}
     </main>
     )
 }

@@ -1,7 +1,7 @@
-const NewPost = () => {
+const NewPost = ({ handleSubmit, postTitle, postBody }) => {
     return (
     <div className="NewPost container">
-        This is a new post
+        
     </div>
     )
 }
