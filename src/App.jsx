@@ -62,7 +62,7 @@ const App = () => {
         <Header />
           <Routes>
             <Route path='/' element={ <Home posts={posts} /> } />
-            <Route path='/post' element={<NewPost handleSubmit={handleSubmit} postTitle={postTitle} postBody={postBody} />} />
+            <Route path='/post' element={<NewPost handleSubmit={handleSubmit} postTitle={postTitle} setPostTitle={setPostTitle} postBody={postBody} setPostBody={setPostBody} />} />
             <Route path='/post/:id' element={<PostPage posts={posts} handleDelete={handleDelete}/>} />
             <Route path='/edit/:id' element={<EditPost /> } />
           </Routes>
