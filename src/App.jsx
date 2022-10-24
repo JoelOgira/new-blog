@@ -1,7 +1,7 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
-import format from 'date-fns/esm/fp/format/index.js';
+import {format} from 'date-fns';
 import api from './api/posts'
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
@@ -16,6 +16,8 @@ const App = () => {
   const [posts, setPosts] = useState([]);
   const [postTitle, setPostTitle] = useState('');
   const [postBody, setPostBody] = useState('');
+  const [editTitle, setEditTitle] = useState('');
+  const [editBody, setEditBody] = useState('');
   
   const history = useNavigate();
 
@@ -35,12 +37,26 @@ const App = () => {
     e.preventDefault();
     const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
     const datetime = format(new Date(), 'MMMM dd, yyyy pp');
-    const newPost = {id, title:postTitle, datetime, body: postBody};
+    const newPost = [{id, title:postTitle, datetime, body: postBody}];
     try {
       const response = await api.post('/posts', newPost);
       setPosts( [...posts, response.data] );
       setPostTitle('');
       setPostBody('');
+      history('/');
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  const handleEdit = async id => {
+    const datetime = format(new Date(), 'MMMM dd, yyyy pp');
+    const editedPost = {id, title:editTitle, datetime, body:editBody}
+    try {
+      const response = await api.put(`/posts/${id}`, editedPost);
+      setPosts(posts.map(post => post.id === id ? { ...response.data} : post));
+      setEditTitle('');
+      setEditBody('')
       history('/');
     } catch (error) {
       console.log(error.message);
@@ -64,7 +80,7 @@ const App = () => {
             <Route path='/' element={ <Home posts={posts} /> } />
             <Route path='/post' element={<NewPost handleSubmit={handleSubmit} postTitle={postTitle} setPostTitle={setPostTitle} postBody={postBody} setPostBody={setPostBody} />} />
             <Route path='/post/:id' element={<PostPage posts={posts} handleDelete={handleDelete}/>} />
-            <Route path='/edit/:id' element={<EditPost /> } />
+            <Route path='/edit/:id' element={<EditPost posts={posts} handleEdit={handleEdit} editTitle={editTitle} setEditTitle={setEditTitle} editBody={editBody}  setEditBody={setEditBody} /> } />
           </Routes>
         <Footer />
     </div>

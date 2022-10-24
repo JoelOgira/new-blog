@@ -52,13 +52,16 @@ a {
 }
 
 /* Post Card styling */
-
-.PostPage h2, h6, .Post a {
+.post-card a , .PostPage h2, h6, hr{
   color: teal;
 }
 
-.Post a:hover {
-  color: black !important;
+.post-card a:hover {
+  color: #003F3F;
+}
+
+.post-card h6, .PostPage h6 {
+  font-size: .8rem;
 }
 
 /* Footer Styling */

@@ -1,16 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 const Post = ({ post }) => {
-    return (
-    <div className="Post card mb-3 p-4">
+  return (
+    <div className=" post-card card p-4 mb-3">
         <Link to={`/post/${post.id}`}>
-            <h2 className="card-title">{post.title}</h2>
-            <h6 className="card-text">{post.datetime}</h6>                                                              
+            <h3 className="card-title">{post.title}</h3>
+            <h6 className="card-text">{post.datetime}</h6>
         </Link>
-        <hr className="my-2" />
-        {(post.body).length <= 30 ? post : `${(post.body).slice(0, 30)} ... `}
+        <hr />
+        <p className="card-text">
+            {(post.body).length <= 45 ? post.body :
+                `${(post.body).slice(0, 45)} ...`
+            }
+        </p>
     </div>
-    )
+  )
 }
 
-export default Post;
+export default Post
