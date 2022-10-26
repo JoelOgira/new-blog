@@ -21,7 +21,7 @@ const PostPage = ({ posts, handleDelete }) => {
             {!post &&
                 <>
                     <h3 className="card-title text-center mb-4">No Post is available</h3>
-                    <Link className="text-center">Go back to homepage</Link>
+                    <Link to="/" className="text-center">Go back to homepage</Link>
                 </>
             }
         </div>

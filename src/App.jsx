@@ -34,20 +34,35 @@ const App = () => {
   }, []);
 
   const handleSubmit = async e => {
-    e.preventDefault();
     const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
-    const datetime = format(new Date(), 'MMMM dd, yyyy pp');
-    const newPost = [{id, title:postTitle, datetime, body: postBody}];
+    const datetime = format(new Date(), 'MMMM yy, yyyy pp');
+    const myNewPost = {id, title:postTitle, datetime, body:postBody}
     try {
-      const response = await api.post('/posts', newPost);
-      setPosts( [...posts, response.data] );
+      const response = await api.post('/posts', myNewPost);
+      setPosts([...posts, response.data]);
       setPostTitle('');
       setPostBody('');
-      history('/');
+      history('/'); 
     } catch (error) {
-      console.log(error.message);
+      console.log(`Error: ${error.message}`)
     }
   }
+
+  // const handleSubmit = async e => {
+  //   e.preventDefault();
+  //   const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
+  //   const datetime = format(new Date(), 'MMMM dd, yyyy pp');
+  //   const newPost = {id, title:postTitle, datetime, body: postBody};
+  //   try {
+  //     const response = await api.post('/posts', newPost);
+  //     setPosts( [ ...posts, response.data ] );
+  //     setPostTitle('');
+  //     setPostBody('');
+  //     history('/');
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // }
 
   const handleEdit = async id => {
     const datetime = format(new Date(), 'MMMM dd, yyyy pp');
