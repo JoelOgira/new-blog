@@ -19,6 +19,10 @@ a {
   text-decoration: none !important;
 }
 
+a:hover {
+  color: #003F3F !important;
+}
+
 
 .App {
   display: flex;
@@ -33,6 +37,24 @@ a {
 .Header {
   width: 100%;
   margin-bottom: 1rem;
+}
+
+.searchForm input:focus {
+  box-shadow: none;
+}
+
+.search-label {
+  position: absolute;
+  left: -999999px;
+}
+
+.search-btn {
+  border-radius: 5px 0 0 5px !important;
+  color: teal !important;
+}
+
+.search-btn:hover {
+  color: #003F3F !important;
 }
 
 /* Content styling */

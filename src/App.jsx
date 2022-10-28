@@ -9,6 +9,8 @@ import NewPost from './Components/NewPost';
 import Home from './Components/Home';
 import PostPage from './Components/PostPage';
 import EditPost from './Components/EditPost';
+import About from './Components/About';
+import ErrorPage from './Components/ErrorPage';
 
 
 const App = () => {
@@ -18,8 +20,16 @@ const App = () => {
   const [postBody, setPostBody] = useState('');
   const [editTitle, setEditTitle] = useState('');
   const [editBody, setEditBody] = useState('');
+  const [search, setSearch] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   
   const history = useNavigate();
+
+  useEffect(() => {
+    const filteredResults = posts.filter(post => ((post.title).toLowerCase().includes(search.toLowerCase())) || 
+    ((post.body).toLowerCase().includes(search.toLowerCase())));
+    setSearchResults(filteredResults.reverse());
+  }, [posts, search]);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -75,12 +85,14 @@ const App = () => {
 
   return (
     <div className="App">  
-        <Header />
+        <Header search={search} setSearch={setSearch} />
           <Routes>
-            <Route path='/' element={ <Home posts={posts} /> } />
+            <Route path='/' element={ <Home posts={searchResults} /> } />
             <Route path='/post' element={<NewPost handleSubmit={handleSubmit} postTitle={postTitle} setPostTitle={setPostTitle} postBody={postBody} setPostBody={setPostBody} />} />
             <Route path='/post/:id' element={<PostPage posts={posts} handleDelete={handleDelete}/>} />
-            <Route path='/edit/:id' element={<EditPost posts={posts} handleEdit={handleEdit} editTitle={editTitle} setEditTitle={setEditTitle} editBody={editBody}  setEditBody={setEditBody} /> } />
+            <Route path='/edit/:id' element={<EditPost posts={posts} handleEdit={handleEdit} editTitle={editTitle} setEditTitle={setEditTitle} editBody={editBody}  setEditBody={setEditBody} />} />
+            <Route path='/about' element={<About />} />
+            <Route path='*' element={<ErrorPage />} />
           </Routes>
         <Footer />
     </div>
