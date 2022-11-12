@@ -86,6 +86,11 @@ a:hover {
   font-size: .8rem;
 }
 
+/* Edit card styling */
+.editCard {
+  width: 90%;
+}
+
 /* Footer Styling */
 .Footer {
   position: sticky;

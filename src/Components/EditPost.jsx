@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useParams} from "react-router-dom";
 
+
 const EditPost = ({ posts, handleEdit, editTitle, setEditTitle, editBody, setEditBody }) => {
 
     const { id } = useParams();
-    const post = posts.find(post => post.id == id);
+    const post = posts.find(post => (post.id).toString() === id);
     
     useEffect(() => {
       if(post) {
@@ -14,7 +15,7 @@ const EditPost = ({ posts, handleEdit, editTitle, setEditTitle, editBody, setEdi
     }, [post, setEditTitle, setEditBody])
     
     return (
-    <div className="card p-4">
+    <div className="card editCard p-2">
         <h1 className="text-center text-light mb-3">Edit Post</h1>
           <form className="newFormPost p-4" onSubmit={ e => e.preventDefault()}>
             <label htmlFor="postTitle">Title </label>
@@ -28,7 +29,8 @@ const EditPost = ({ posts, handleEdit, editTitle, setEditTitle, editBody, setEdi
             />        
             <label htmlFor="postBody">Post </label>
             <textarea 
-              id="postBody"
+              id="editBody" 
+              rows="15"
               className="form-control mb-4" 
               required
               value={editBody}
