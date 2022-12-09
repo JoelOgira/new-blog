@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 import Search from "./Search";
+import { FaTabletAlt, FaLaptop, FaMobileAlt } from "react-icons/fa";
 
-const Header = ({search, setSearch}) => {
+const Header = ({search, setSearch, width}) => {
     return (
     <header className="Header navbar navbar-expand-sm py-3">
         <div className="container">
             <div className="navbar-brand">
                 <Link to='/'>Windfall Technologies</Link>
+            </div>
+            <div>
+                {width < 768 ? <FaMobileAlt /> : width < 992 ? <FaTabletAlt /> : <FaLaptop />}
             </div>
             <ul className="navbar-nav ">
                 <li className="nav-item">
