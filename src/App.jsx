@@ -11,6 +11,7 @@ import PostPage from './Components/PostPage';
 import EditPost from './Components/EditPost';
 import About from './Components/About';
 import ErrorPage from './Components/ErrorPage';
+import useWindowSize from './Hooks/useWindowSize';
 
 
 const App = () => {
@@ -21,9 +22,9 @@ const App = () => {
   const [editTitle, setEditTitle] = useState('');
   const [editBody, setEditBody] = useState('');
   const [search, setSearch] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  
+  const [searchResults, setSearchResults] = useState([]);  
   const history = useNavigate();
+  const { width } = useWindowSize();
 
   useEffect(() => {
     const filteredResults = posts.filter(post => ((post.title).toLowerCase().includes(search.toLowerCase())) || 
@@ -85,7 +86,7 @@ const App = () => {
 
   return (
     <div className="App">  
-        <Header search={search} setSearch={setSearch} />
+        <Header search={search} setSearch={setSearch} width={width}/>
           <Routes>
             <Route path='/' element={ <Home posts={searchResults} /> } />
             <Route path='/post' element={<NewPost handleSubmit={handleSubmit} postTitle={postTitle} setPostTitle={setPostTitle} postBody={postBody} setPostBody={setPostBody} />} />
