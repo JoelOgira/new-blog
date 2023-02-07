@@ -9,7 +9,7 @@ const Header = ({search, setSearch, width}) => {
             <div className="navbar-brand">
                 <Link to='/'>Windfall Technologies</Link>
             </div>
-            <div>
+            <div className="widthDisplay">
                 {width < 768 ? <FaMobileAlt /> : width < 992 ? <FaTabletAlt /> : <FaLaptop />}
             </div>
             <ul className="navbar-nav ">
