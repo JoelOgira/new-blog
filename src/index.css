@@ -39,6 +39,10 @@ a:hover {
   margin-bottom: 1rem;
 }
 
+.widthDisplay {
+  color: white;
+}
+
 .searchForm input:focus {
   box-shadow: none;
 }
