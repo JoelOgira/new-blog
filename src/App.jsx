@@ -12,6 +12,7 @@ import EditPost from './Components/EditPost';
 import About from './Components/About';
 import ErrorPage from './Components/ErrorPage';
 import useWindowSize from './Hooks/useWindowSize';
+import useAxiosFetch from './Hooks/useAxiosFetch';
 
 
 const App = () => {
@@ -25,24 +26,17 @@ const App = () => {
   const [searchResults, setSearchResults] = useState([]);  
   const history = useNavigate();
   const { width } = useWindowSize();
+  const { data, error, isLoading } = useAxiosFetch('http://localhost:5000/posts');
+
+  useEffect(() => {
+    setPosts(data);
+  }, [data])
 
   useEffect(() => {
     const filteredResults = posts.filter(post => ((post.title).toLowerCase().includes(search.toLowerCase())) || 
     ((post.body).toLowerCase().includes(search.toLowerCase())));
     setSearchResults(filteredResults.reverse());
   }, [posts, search]);
-
-  useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const response = await api.get('/posts');
-        setPosts(response.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
-    getPosts();
-  }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
